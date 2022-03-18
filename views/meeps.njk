@@ -1,0 +1,18 @@
+{% extends layout %}
+{% block  content %}
+
+<main class="container">
+
+    <ul>
+        {% for item in items %}
+            <div class="card meeps-card">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.title}}</h5>
+                    <p class="card-text">{{item.body}}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </ul>
+    
+{% endblock %}
+</main>
