@@ -4,11 +4,11 @@ const router = express.Router();
 
 router.get('/', async (req, res, next) => {
     const sql = "SELECT * FROM meeps";
-    const json = req.params.json;
+    const json = req.query.json;
+    const keyword = req.query.keyword;
     await pool.promise()
         .query(sql)
         .then(([rows, fields]) => {
-            console.log(rows)
             if (json == "true") {
                 res.json({
                     tasks: {
@@ -21,6 +21,7 @@ router.get('/', async (req, res, next) => {
                     layout:  'layout.njk',
                     title: 'Meeps',
                     items: rows,
+                    keyword: keyword
                 }
                 res.render('meeps.njk', data);
             }
@@ -73,9 +74,6 @@ router.post('/',
                 }
             });
         });
-    
-        
-    
 });
 
 
