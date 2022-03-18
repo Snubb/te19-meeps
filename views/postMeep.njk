@@ -1,0 +1,18 @@
+{% extends layout %}
+{% block  content %}
+
+<main class="container">
+    <form action="/meeps" method="post" class="meeps-card">
+        <div class="input-group mb-3" style="margin-top: 1rem">
+            <input name="meepTitle" id="meepTitle" type="text" class="form-control" placeholder="Title">
+        </div>
+        <div class="input-group">
+            <textarea name="meepBody" id="meepBody" class="form-control" placeholder="Body (max 140 chars)"></textarea>
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-top: 0.3rem">
+            <button class="btn btn-primary" type="submit">Post</button>
+        </div>
+    </form>
+    
+{% endblock %}
+</main>

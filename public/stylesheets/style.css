@@ -10,4 +10,7 @@ a {
   margin-top: 1rem;
   margin-bottom: 1rem; }
 
+textarea {
+  resize: none; }
+
 /*# sourceMappingURL=style.css.map */
