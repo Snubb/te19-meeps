@@ -5,7 +5,10 @@ const router = express.Router();
 router.get('/', async (req, res, next) => {
     const sql = "SELECT * FROM meeps";
     const json = req.query.json;
-    const keyword = req.query.keyword;
+    let keyword = "";
+    if(req.query.keyword) {
+        keyword = req.query.keyword.toLowerCase();
+    }
     await pool.promise()
         .query(sql)
         .then(([rows, fields]) => {

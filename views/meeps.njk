@@ -6,7 +6,7 @@
     <ul>
         {% for item in items %}
             {% if keyword %}
-                {% if (keyword in item.title) or (keyword in item.body)%}
+                {% if (keyword | lower in item.title | lower) or (keyword | lower in item.body | lower)%}
                     <div class="card meeps-card">
                         <div class="card-body">
                             <h5 class="card-title">{{item.title}}</h5>
@@ -22,7 +22,6 @@
                     </div>
                 </div>
             {% endif %}
-            {% else %}
         {% endfor %}
     </ul>
     <script src="/javascripts/search.js"></script>
