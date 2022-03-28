@@ -2,6 +2,13 @@
 {% block  content %}
 
 <main class="container">
+    <form action="/meeps" method="get" class="meeps-card">
+        <select id="sort" name="sort" class="form-select" aria-label="Default select example" onchange="this.form.submit()">
+            <option selected value="1">Date</option>
+            <option value="2">Alphabetically</option>
+            <option value="3">Random</option>
+        </select>
+    </form>
 
     <ul>
         {% for item in items %}

@@ -3,19 +3,43 @@ const pool = require('../database');
 const router = express.Router();
 
 router.get('/', async (req, res, next) => {
-    const sql = "SELECT * FROM meeps";
+    let sql = "SELECT * FROM meeps";
     const json = req.query.json;
+    const sort = req.query.sort;
     let keyword = "";
     if(req.query.keyword) {
         keyword = req.query.keyword.toLowerCase();
     }
+    let page = 1;
+    if(req.query.page) {
+        page = req.query.page;
+    }
+
+    if(sort) {
+        switch (sort) {
+            case '1':
+                sql += " ORDER BY createdAt";
+                break;
+            case '2':
+                sql += " ORDER BY title";
+                break;
+            case '3':
+                sql += " ORDER BY RAND()";
+                break;
+        }
+    }
+
     await pool.promise()
         .query(sql)
         .then(([rows, fields]) => {
+            numOfItemsPerPage = 5;
+            let newRows = rows.slice((page-1)*numOfItemsPerPage, ((page-1)*numOfItemsPerPage)+numOfItemsPerPage);
+            
+            console.log(newRows);
             if (json == "true") {
                 res.json({
                     tasks: {
-                        data: rows
+                        data: newRows
                     }
                 });
             } else {
@@ -23,7 +47,7 @@ router.get('/', async (req, res, next) => {
                     message: 'Displaying tasks',
                     layout:  'layout.njk',
                     title: 'Meeps',
-                    items: rows,
+                    items: newRows,
                     keyword: keyword
                 }
                 res.render('meeps.njk', data);
