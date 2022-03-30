@@ -34,8 +34,9 @@ router.get('/', async (req, res, next) => {
         .then(([rows, fields]) => {
             numOfItemsPerPage = 5;
             let newRows = rows.slice((page-1)*numOfItemsPerPage, ((page-1)*numOfItemsPerPage)+numOfItemsPerPage);
+            const numOfPages = Math.ceil(rows.length/numOfItemsPerPage);
+            console.log(numOfPages);
             
-            console.log(newRows);
             if (json == "true") {
                 res.json({
                     tasks: {
@@ -50,7 +51,8 @@ router.get('/', async (req, res, next) => {
                     items: newRows,
                     keyword: keyword,
                     sort: sort,
-                    page: parseInt(page)
+                    page: parseInt(page),
+                    numOfPages: numOfPages
                 }
                 res.render('meeps.njk', data);
             }
