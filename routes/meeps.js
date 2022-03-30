@@ -17,13 +17,13 @@ router.get('/', async (req, res, next) => {
 
     if(sort) {
         switch (sort) {
-            case '1':
+            case 'date':
                 sql += " ORDER BY createdAt";
                 break;
-            case '2':
+            case 'alphabetically':
                 sql += " ORDER BY title";
                 break;
-            case '3':
+            case 'rand':
                 sql += " ORDER BY RAND()";
                 break;
         }
@@ -48,7 +48,8 @@ router.get('/', async (req, res, next) => {
                     layout:  'layout.njk',
                     title: 'Meeps',
                     items: newRows,
-                    keyword: keyword
+                    keyword: keyword,
+                    sort: sort
                 }
                 res.render('meeps.njk', data);
             }
