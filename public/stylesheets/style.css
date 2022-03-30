@@ -16,4 +16,24 @@ textarea {
 ul {
   padding: 0; }
 
+.page-wheel {
+  margin: auto;
+  margin-bottom: 1rem; }
+
+.wheel-item {
+  border: solid;
+  border-color: black;
+  border-width: 0.5px;
+  text-align: center;
+  border-radius: 3px;
+  padding: 0; }
+
+.wheel-form {
+  margin: 0;
+  padding: 0; }
+
+.wheel-item-button {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem; }
+
 /*# sourceMappingURL=style.css.map */

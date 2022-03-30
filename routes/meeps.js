@@ -49,7 +49,8 @@ router.get('/', async (req, res, next) => {
                     title: 'Meeps',
                     items: newRows,
                     keyword: keyword,
-                    sort: sort
+                    sort: sort,
+                    page: parseInt(page)
                 }
                 res.render('meeps.njk', data);
             }

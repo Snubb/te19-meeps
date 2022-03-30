@@ -32,6 +32,28 @@
             {% endif %}
         {% endfor %}
     </ul>
+    <div class="container page-wheel">
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto wheel-item">
+                <form action="/meeps" method="get">
+                    <input hidden name="page" value="{{ page - 1 }}"></input>
+                    <button type="submit" class="btn wheel-item-button"><</button>
+                </form>
+            </div>
+            <div class="col-md-auto wheel-item">
+                <form action="/meeps" method="get">
+                    <input hidden name="page" value="{{ page }}"></input>
+                    <button type="submit" class="btn wheel-item-button">{{ page }}</button>
+                </form>
+            </div>
+            <div class="col-md-auto wheel-item">
+                <form action="/meeps" method="get">
+                    <input hidden name="page" value="{{ page + 1 }}"></input>
+                    <button type="submit" class="btn wheel-item-button">></button>
+                </form>
+            </div>
+        </div>
+    </div>
     <script src="/javascripts/search.js"></script>
 {% endblock %}
 </main>
