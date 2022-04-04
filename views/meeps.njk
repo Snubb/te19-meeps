@@ -11,7 +11,7 @@
         <input hidden name="limit" value="{{limit}}">
         {% if keyword %}<input hidden name="keyword" value="{{keyword}}">{% endif %}
         <select id="sort" name="sort" class="form-select" aria-label="Default select example" onchange="this.form.submit()">
-            <option selected disabled hidden>{% if sort %}{{ sort | title}}{% else %} Date {% endif %}</option>
+            <option selected disabled hidden>Sort by {% if sort %}{{ sort | title}}{% else %} Date {% endif %}</option>
             <option value="date">Date</option>
             <option value="alphabetically">Alphabetically</option>
             <option value="random">Random</option>
