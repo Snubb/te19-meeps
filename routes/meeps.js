@@ -23,7 +23,7 @@ router.get('/', async (req, res, next) => {
             case 'alphabetically':
                 sql += " ORDER BY title";
                 break;
-            case 'rand':
+            case 'random':
                 sql += " ORDER BY RAND()";
                 break;
         }
