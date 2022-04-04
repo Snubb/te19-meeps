@@ -6,9 +6,15 @@ router.get('/', async (req, res, next) => {
     let sql = "SELECT * FROM meeps";
     const json = req.query.json;
     const sort = req.query.sort;
+    let limit = 5;
+    if (req.query.limit) {
+        limit = req.query.limit;
+    }
     let keyword = "";
     if(req.query.keyword) {
         keyword = req.query.keyword.toLowerCase();
+        console.log(keyword);
+        sql += " WHERE title LIKE '%" + keyword + "%' OR body LIKE '%" + keyword + "%'"
     }
     let page = 1;
     if(req.query.page) {
@@ -29,13 +35,12 @@ router.get('/', async (req, res, next) => {
         }
     }
 
+    console.log(sql);
     await pool.promise()
         .query(sql)
         .then(([rows, fields]) => {
-            numOfItemsPerPage = 5;
-            let newRows = rows.slice((page-1)*numOfItemsPerPage, ((page-1)*numOfItemsPerPage)+numOfItemsPerPage);
-            const numOfPages = Math.ceil(rows.length/numOfItemsPerPage);
-            console.log(numOfPages);
+            let newRows = rows.slice((page-1)*limit, ((page-1)*limit)+limit);
+            const numOfPages = Math.ceil(rows.length/limit);
             
             if (json == "true") {
                 res.json({
@@ -52,6 +57,7 @@ router.get('/', async (req, res, next) => {
                     keyword: keyword,
                     sort: sort,
                     page: parseInt(page),
+                    limit: limit,
                     numOfPages: numOfPages
                 }
                 res.render('meeps.njk', data);
