@@ -2,6 +2,10 @@
 {% block  content %}
 
 <main class="container">
+    <form class="d-flex meeps-card" method="get">
+        <input class="form-control me-2" id="searchKeywordInput" name="keyword" placeholder="Search">
+        <a><button id="searchKeywordButton" type="submit" class="btn btn-outline-primary">Search</button></a>
+    </form>
     <form action="/meeps" method="get" class="meeps-card">
         <select id="sort" name="sort" class="form-select" aria-label="Default select example" onchange="this.form.submit()">
             <option selected disabled hidden>{% if sort %}{{ sort | title}}{% else %} Date {% endif %}</option>
