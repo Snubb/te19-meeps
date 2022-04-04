@@ -38,9 +38,8 @@ router.get('/', async (req, res, next) => {
     await pool.promise()
         .query(sql)
         .then(([rows, fields]) => {
-            let newRows = rows.slice((page-1)*limit, ((page-1)*limit)+limit);
+            let newRows = rows.slice((page-1)*limit, (page)*limit);
             const numOfPages = Math.ceil(rows.length/limit);
-            
             if (json == "true") {
                 res.json({
                     tasks: {
