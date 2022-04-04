@@ -37,6 +37,7 @@
             {% if (page - 1) != 0 %}
                 <div class="col-md-auto wheel-item">
                     <form action="/meeps" method="get">
+                        <input hidden name="sort" value="{{sort}}">
                         <input hidden name="page" value="{{ page - 1 }}"></input>
                         <button type="submit" class="btn wheel-item-button"><</button>
                     </form>
@@ -44,6 +45,7 @@
             {% endif %}
             <div class="col-md-auto wheel-item">
                 <form action="/meeps" method="get">
+                    <input hidden name="sort" value="{{sort}}">
                     <input hidden name="page" value="{{ page }}"></input>
                     <button type="submit" class="btn wheel-item-button">{{ page }}</button>
                 </form>
@@ -51,6 +53,7 @@
             {% if (page) != numOfPages %} 
                 <div class="col-md-auto wheel-item">
                     <form action="/meeps" method="get">
+                        <input hidden name="sort" value="{{sort}}">
                         <input hidden name="page" value="{{ page + 1 }}"></input>
                         <button type="submit" class="btn wheel-item-button">></button>
                     </form>
