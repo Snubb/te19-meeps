@@ -13,7 +13,6 @@ router.get('/', async (req, res, next) => {
     let keyword = "";
     if(req.query.keyword) {
         keyword = req.query.keyword.toLowerCase();
-        console.log(keyword);
         sql += " WHERE title LIKE '%" + keyword + "%' OR body LIKE '%" + keyword + "%'"
     }
     let page = 1;
