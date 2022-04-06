@@ -3,7 +3,7 @@ const pool = require('../database');
 const router = express.Router();
 
 router.get('/', async (req, res, next) => {
-    let sql = "SELECT * FROM meeps";
+    let sql = "SELECT * FROM olrlut_meeps";
     const json = req.query.json;
     const sort = req.query.sort;
     let limit = 5;
@@ -85,7 +85,7 @@ router.get('/post',
 
 router.post('/',
     async (req, res, next) => {
-        const sql = 'INSERT INTO meeps (title, body) VALUES (?, ?)';
+        const sql = 'INSERT INTO olrlut_meeps (title, body) VALUES (?, ?)';
         await pool.promise()
         .query(sql, [req.body.meepTitle, req.body.meepBody])
         .then((response) => {
