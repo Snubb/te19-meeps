@@ -30,7 +30,7 @@
     </ul>
     <div class="container page-wheel">
         <div class="row justify-content-md-center">
-            {% if (page - 1) != 0 %}
+            {% if (page - 1) > 0 %}
                 <div class="col-md-auto wheel-item">
                     <form action="/meeps" method="get">
                         {% if keyword %}<input hidden name="keyword" value="{{keyword}}">{% endif %}
@@ -50,7 +50,7 @@
                     <button disabled type="submit" class="btn wheel-item-button">{{ page }}</button>
                 </form>
             </div>
-            {% if (page) != numOfPages %} 
+            {% if (page) < numOfPages %} 
                 <div class="col-md-auto wheel-item">
                     <form action="/meeps" method="get">
                         {% if keyword %}<input hidden name="keyword" value="{{keyword}}">{% endif %}
