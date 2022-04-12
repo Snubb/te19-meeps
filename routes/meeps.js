@@ -38,17 +38,21 @@ router.get('/', async (req, res, next) => {
     await pool.promise()
         .query(sql)
         .then(([rows, fields]) => {
-            let newRows = rows.slice((page-1)*limit, (page)*limit);
-            const numOfPages = Math.ceil(rows.length/limit);
+            let newRows = rows;
+            let numOfPages = 1;
+            if (limit != -1) {
+                newRows = rows.slice((page-1)*limit, (page)*limit);
+                numOfPages = Math.ceil(rows.length/limit);
+            } 
             if (json == "true") {
                 res.json({
-                    tasks: {
+                    meeps: {
                         data: newRows
                     }
                 });
             } else {
                 let  data = {
-                    message: 'Displaying tasks',
+                    message: 'Displaying meeps',
                     layout:  'layout.njk',
                     title: 'Meeps',
                     items: newRows,
@@ -64,8 +68,8 @@ router.get('/', async (req, res, next) => {
         .catch(err => {
             console.log(err);
             res.status(500).json({
-                tasks: {
-                    error: "Cannot retrieve tasks"
+                meeps: {
+                    error: "Cannot retrieve meeps"
                 }
             });
         });
@@ -104,8 +108,8 @@ router.post('/',
         .catch(err => {
             console.log(err);
             res.status(500).json({
-                tasks: {
-                    error: "Cannot retrieve tasks"
+                meeps: {
+                    error: "Cannot retrieve meeps"
                 }
             });
         });
